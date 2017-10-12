@@ -16,6 +16,8 @@ def json_request(
         resp_body = resp.read().decode(encoding)
         json_result = json.loads(resp_body)
 
+        print('%s : success for request [%s]' % (datetime.now(), url))
+
         if callable(success) is False:
             return json_result
 
