@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from .api import api
-
+import json
 RESULT_DIRECTORY = '__results__/crawling'
 
 
@@ -43,6 +43,13 @@ def crawling(pagename, since, until):
     # save results to file
     filename = '%s/fb_%s_%s_%s.json' %(RESULT_DIRECTORY,pagename,since,until)
     with open(filename, 'w', encoding='utf-8') as outfile:
-        pass
+        # indent  = 들여쓰기, sort_keys = 정렬, ensure_ascii= false 아스키 코드 인코딩 패스
+        json_string =json.dumps(results, indent=4, sort_keys=True, ensure_ascii=False)
+        outfile.write(json_string)
+
+
+    return filename
+
+
 
 
