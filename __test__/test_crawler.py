@@ -1,11 +1,11 @@
 import analysis_fb.collection.crewler as crawler
 
-pagename ="jtbcnews"
+pagename = 'jtbcnews'
 since = '2017-10-01'
 until = '2017-10-01'
 
-data = [
+items = [
 ('jtbcnews', '2017-10-01', '2017-10-13')]
 
-for pagename, since, until in data:
+for pagename, since, until in items:
     crawler.crawling(pagename,since,until)
