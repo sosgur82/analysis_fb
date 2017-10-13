@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from .api import api
 import json
+
 RESULT_DIRECTORY = '__results__/crawling'
 
 
@@ -35,21 +36,21 @@ def preprocess_post(post):
 def crawling(pagename, since, until):
     results = []
 
+    """
     for posts in api.fb_fetch_posts(pagename, since, until):
         for post in posts:
             preprocess_post(post)
         results += posts
+    """
 
     # save results to file
-    filename = '%s/fb_%s_%s_%s.json' %(RESULT_DIRECTORY,pagename,since,until)
-    with open(filename, 'w', encoding='utf-8') as outfile:
-        # indent  = 들여쓰기, sort_keys = 정렬, ensure_ascii= false 아스키 코드 인코딩 패스
-        json_string =json.dumps(results, indent=4, sort_keys=True, ensure_ascii=False)
-        outfile.write(json_string)
+    filename = '%s/fb_%s_%s_%s.json' % (RESULT_DIRECTORY, pagename, since, until)
+
+
+    # with open(filename, 'w', encoding='utf-8') as outfile:
+    #     json_string = json.dumps(results, indent=4, sort_keys=True, ensure_ascii=False)
+    #     outfile.write(json_string)
 
 
     return filename
-
-
-
 
