@@ -8,8 +8,8 @@ until = '2017-10-01'
 
 if __name__ == '__main__':
     items = [
-        {'pagename': 'jtbcnews', 'since': '2017-01-01', 'until': '2017-10-16'},
-        {'pagename': 'chosun', 'since': '2017-01-01', 'until': '2017-10-16'}
+        {'pagename': 'jtbcnews', 'since': '2017-10-01', 'until': '2017-10-13'},
+        {'pagename': 'chosun', 'since': '2017-10-01', 'until': '2017-10-13'}
     ]
 
     # collection
