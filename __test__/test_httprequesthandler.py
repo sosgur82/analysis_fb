@@ -1,7 +1,12 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs
+import matplotlib.pyplot as plt
+import numpy as np
+from io import BytesIO
 
 PORT = 8000
+
+
 
 
 class TestHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -37,6 +42,22 @@ class TestHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write("<h1>안녕하세요</h1>".encode('utf-8'))
+
+    def ex2(self):
+        arr = np.random.normal(5, 3, 500)
+
+        fig, subplots = plt.subplots(2, 1)
+        subplots[0].plot(arr, color='red', linestyle='solid')
+        subplots[1].hist(arr, bins=20, edgecolor='black', linewidth=1)
+
+        buffer = BytesIO()
+        plt.savefig(buffer, dpi=100, bbox_inches='tight')
+
+        self.send_response(200)
+        self.send_header('Content-Type', 'image/png')
+        self.end_headers()
+
+        self.wfile.write(buffer.getvalue())
 
 
 httpd = HTTPServer(('', PORT), TestHTTPRequestHandler)
